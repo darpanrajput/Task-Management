@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # MongoDB Service
+  mongo:
+    image: mongo:7.0
+    container_name: taskdb-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    volumes:
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+    networks:
+      - task-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Service
+  redis:
+    image: redis:7-alpine
+    container_name: taskdb-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - task-network
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: taskdb-backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      PORT: ${PORT}
+      MONGO_URI: ${MONGO_URI}
+      REDIS_URL: ${REDIS_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      NODE_ENV: ${NODE_ENV}
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./src:/app/src
+    networks:
+      - task-network
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+    driver: local
+  mongo_config:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  task-network:
+    driver: bridge

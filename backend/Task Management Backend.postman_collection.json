@@ -1,0 +1,873 @@
+{
+  "info": {
+    "_postman_id": "fcaceba7-256c-4242-9d9e-2ae6863e3ef0",
+    "name": "Task Management Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21767319"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Administrator\",\n  \"email\": \"alice@example.com\",\n  \"password\": \"Password123!\",\n  \"role\": \"Admin\",\n  \"department\": \"IT\",\n  \"experienceYears\": 3,\n  \"location\": \"New York\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"superadmin@taskmanagement.com\",\n  \"password\": \"SecureAdmin2026!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Auth - Login",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"superadmin@taskmanagement.com\",\n  \"password\": \"SecureAdmin2026!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "488"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1e8-0MTVGYjAivO/LULu1bUpv5sY+pM\""
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Feb 2026 07:40:40 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"user\": {\n        \"_id\": \"69a1f6bf3a0f20dec3e0c2a7\",\n        \"name\": \"Administrator\",\n        \"email\": \"superadmin@taskmanagement.com\",\n        \"role\": \"Admin\",\n        \"department\": \"IT\",\n        \"experienceYears\": 10,\n        \"location\": \"Remote\",\n        \"activeTaskCount\": 0,\n        \"createdAt\": \"2026-02-27T19:55:43.739Z\",\n        \"updatedAt\": \"2026-02-27T19:55:43.739Z\",\n        \"__v\": 0\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFmNmJmM2EwZjIwZGVjM2UwYzJhNyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MjI2NDQ0MCwiZXhwIjoxNzcyMjY4MDQwfQ.KY4QQkqc0VBcAsZySRcvw-BPxH_6KD8V6pi1pNm3gEU\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Users - Get All",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFmNmJmM2EwZjIwZGVjM2UwYzJhNyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MjI2NDQ0MCwiZXhwIjoxNzcyMjY4MDQwfQ.KY4QQkqc0VBcAsZySRcvw-BPxH_6KD8V6pi1pNm3gEU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Users - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Alice J\",\n  \"department\": \"Engineering\",\n  \"location\": \"Remote\",\n  \"experienceYears\":\"6\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users/699e9c2316193f4f305bba7a",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "699e9c2316193f4f305bba7a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Tasks - Create",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authToken}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Prepare Q2 Report\",\n  \"description\": \"Compile sales and expenses for Q2\",\n  \"priority\": \"High\",\n  \"dueDate\": \"2026-03-31T23:59:59.000Z\",\n  \"rules\": {\n    \"department\": \"Engineering\",\n    \"minExperience\": 0,\n    \"maxActiveTasks\": 5,\n    \"location\": \"New York\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/tasks",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Tasks - GET",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Prepare Q2 Report\",\n  \"description\": \"Compile sales and expenses for Q2\",\n  \"priority\": \"High\",\n  \"dueDate\": \"2026-03-31T23:59:59.000Z\",\n  \"rules\": {\n    \"department\": \"Engineering\",\n    \"minExperience\": 0,\n    \"maxActiveTasks\": 5,\n    \"location\": \"New York\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tasks"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "37"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"25-z5iH18dgte3zJqxytUIu8Lp8Pmg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 27 Feb 2026 19:54:09 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"tasks\": [],\n    \"count\": 0\n}"
+        }
+      ]
+    },
+    {
+      "name": "Tasks - Get Eligible Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/tasks/{{taskId}}/eligible-users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "tasks",
+            "{{taskId}}",
+            "eligible-users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Tasks - My Eligible Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/tasks/my-eligible-tasks",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "tasks",
+            "my-eligible-tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eligibility - Get Eligible Users (cache)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/eligibility/{{taskId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "eligibility",
+            "{{taskId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eligibility - Recompute Task",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/eligibility/{{taskId}}/recompute",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "eligibility",
+            "{{taskId}}",
+            "recompute"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eligibility - Recompute All",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/eligibility/recompute-all",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "eligibility",
+            "recompute-all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eligibility - Clear Cache",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/eligibility/{{taskId}}/cache",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "eligibility",
+            "{{taskId}}",
+            "cache"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Assignments - Assign Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"{{assigneeUserId}}\",\n  \"reason\": \"Assigning for Q2 report\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/assignments/{{taskId}}/assign",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "assignments",
+            "{{taskId}}",
+            "assign"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Assignments - Reassign Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"newUserId\": \"{{newAssigneeUserId}}\",\n  \"reason\": \"Reassigning due to workload\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/assignments/{{taskId}}/reassign",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "assignments",
+            "{{taskId}}",
+            "reassign"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Assignments - Complete Task",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/assignments/{{taskId}}/complete",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "assignments",
+            "{{taskId}}",
+            "complete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "seed",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFmNDVhN2ZhMDcyZjU2OTJhNzQxZCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MjIyMTk1MiwiZXhwIjoxNzcyMjI1NTUyfQ.99ZhnMCGqvuAOj1SFCMTaDEpsb5IlHafufZzGw-e118",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"usersCount\": 50,\r\n    \"tasksCount\": 10,\r\n    \"keepAdmins\":false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/seed",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "seed"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "seed",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"usersCount\": 50,\r\n    \"tasksCount\": 10,\r\n    \"keepAdmins\":false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/seed",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "seed"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "393"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"189-ThHg9jFzWQw/Z8osHaX7CFNoNmY\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 27 Feb 2026 19:53:06 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Seed data generated successfully\",\n    \"cleared\": {\n        \"tasksDeleted\": 0,\n        \"assignmentLogsDeleted\": 0,\n        \"eligibilityDeleted\": 0,\n        \"usersDeleted\": 0,\n        \"adminCount\": 0\n    },\n    \"usersCreated\": 51,\n    \"tasksCreated\": 10,\n    \"adminCreated\": true,\n    \"credentials\": {\n        \"admin\": {\n            \"email\": \"superadmin@taskmanagement.com\",\n            \"password\": \"SecureAdmin2026!\"\n        },\n        \"users\": {\n            \"emailPattern\": \"user{n}@test.com\",\n            \"password\": \"UserPass123!\"\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "clear",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFmNDVhN2ZhMDcyZjU2OTJhNzQxZCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MjIyMTk1MiwiZXhwIjoxNzcyMjI1NTUyfQ.99ZhnMCGqvuAOj1SFCMTaDEpsb5IlHafufZzGw-e118"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"keepAdmins\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/seed/clear",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "seed",
+            "clear"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "clear",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFmNDVhN2ZhMDcyZjU2OTJhNzQxZCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MjIyMTk1MiwiZXhwIjoxNzcyMjI1NTUyfQ.99ZhnMCGqvuAOj1SFCMTaDEpsb5IlHafufZzGw-e118"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"keepAdmins\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/seed/clear",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "seed",
+                "clear"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "159"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"9f-hIV9/E3xMn54Im6dDiI8MQ1Wqbc\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 27 Feb 2026 19:52:51 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Seed data cleared successfully\",\n    \"tasksDeleted\": 10,\n    \"assignmentLogsDeleted\": 0,\n    \"eligibilityDeleted\": 0,\n    \"usersDeleted\": 51,\n    \"adminCount\": 0\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Tasks",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "type": "text",
+              "key": "{\n  \"title\": \"Prepare Q2 Report\",\n  \"description\": \"Compile sales and expenses for Q2\",\n  \"priority\": \"High\",\n  \"dueDate\": \"2026-03-31T23:59:59.000Z\",\n  \"rules\": {\n    \"department\": \"Engineering\",\n    \"minExperience\": 0,\n    \"maxActiveTasks\": 5,\n    \"location\": \"New York\"\n  }\n}",
+              "value": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get All Tasks",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "{\n  \"title\": \"Prepare Q2 Report\",\n  \"description\": \"Compile sales and expenses for Q2\",\n  \"priority\": \"High\",\n  \"dueDate\": \"2026-03-31T23:59:59.000Z\",\n  \"rules\": {\n    \"department\": \"Engineering\",\n    \"minExperience\": 0,\n    \"maxActiveTasks\": 5,\n    \"location\": \"New York\"\n  }\n}",
+                  "value": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/tasks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "tasks"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "37"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"25-z5iH18dgte3zJqxytUIu8Lp8Pmg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 27 Feb 2026 19:54:57 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"tasks\": [],\n    \"count\": 0\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "authToken",
+      "value": ""
+    },
+    {
+      "key": "userId",
+      "value": ""
+    },
+    {
+      "key": "taskId",
+      "value": ""
+    },
+    {
+      "key": "assigneeUserId",
+      "value": ""
+    },
+    {
+      "key": "newAssigneeUserId",
+      "value": ""
+    }
+  ]
+}
