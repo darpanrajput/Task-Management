@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext.jsx'
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 function TopNav({ title }) {
-  const { user, logout } = useAuth()
+  const { user, logout } = useAuth();
 
   return (
     <header className="top-nav">
@@ -13,11 +13,15 @@ function TopNav({ title }) {
         </p>
       </div>
       <div className="top-nav-actions">
-        {user?.role === 'Admin' ? <Link to="/admin">Admin Dashboard</Link> : <Link to="/user">User Dashboard</Link>}
+        {/* {user?.role === "Admin" ? (
+          <Link to="/admin">Admin Mode</Link>
+        ) : (
+          <Link to="/user">User Mode</Link>
+        )} */}
         <button onClick={logout}>Logout</button>
       </div>
     </header>
-  )
+  );
 }
 
-export default TopNav
+export default TopNav;
