@@ -1,7 +1,11 @@
 export async function apiRequest(path, options = {}) {
   const { method = 'GET', body, token } = options
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`
+  const configuredBase = (import.meta.env.VITE_API_BASE_URL || '').trim()
+  const apiBase = configuredBase ? configuredBase.replace(/\/$/, '') : '/api'
+  const requestUrl = `${apiBase}${normalizedPath}`
 
-  const response = await fetch(`/api${path}`, {
+  const response = await fetch(requestUrl, {
     method,
     headers: {
       'Content-Type': 'application/json',
